@@ -3,11 +3,14 @@ import {
   Box,
   Button,
   Checkbox,
+  Grid,
   Group,
   Input,
   Modal,
+  PasswordInput,
   Space,
   Text,
+  Textarea,
   TextInput,
 } from "@mantine/core";
 import { Dropzone, DropzoneStatus, IMAGE_MIME_TYPE } from "@mantine/dropzone";
@@ -86,33 +89,9 @@ const SignUp = () => {
           onClose={() => setOpened(false)}
           title="Introduce yourself!"
         >
-          <Box sx={{ maxWidth: 300 }} mx="auto">
+          <Box mx="auto">
             {/* <form onSubmit={form.onSubmit((values) => console.log(values))}> */}
             <form>
-              <Dropzone
-                accept={IMAGE_MIME_TYPE}
-                onDrop={async (files) => {
-                  const imageData = files[0].name;
-                  const rootCid = await client.put(files, {
-                    name: "avatar",
-                    maxRetries: 3,
-                  });
-                  setFile(rootCid);
-                  console.log("rootCID", rootCid);
-                  setImage(
-                    "https://" +
-                      `${rootCid}` +
-                      ".ipfs.dweb.link/" +
-                      `${imageData}`
-                  );
-
-                  return { image };
-                }}
-              >
-                {(status) => dropzoneChildren(status)}
-              </Dropzone>
-              <Space h="md" />
-
               <TextInput
                 label="Username"
                 required
@@ -120,32 +99,59 @@ const SignUp = () => {
                 {...form.getInputProps("username")}
               />
               <Space h="md" />
+              <Grid grow>
+                <Grid.Col span={2}>
+                  <Space h="sm" />
 
-              <TextInput
-                label="Full Name"
-                required
-                placeholder="Mila Kunis"
-                {...form.getInputProps("name")}
-              />
+                  <Dropzone
+                    accept={IMAGE_MIME_TYPE}
+                    onDrop={async (files) => {
+                      const imageData = files[0].name;
+                      const rootCid = await client.put(files, {
+                        name: "avatar",
+                        maxRetries: 3,
+                      });
+                      setFile(rootCid);
+                      console.log("rootCID", rootCid);
+                      setImage(
+                        "https://" +
+                          `${rootCid}` +
+                          ".ipfs.dweb.link/" +
+                          `${imageData}`
+                      );
 
-              <TextInput
-                label="Bio"
-                placeholder="I like to do human things 👽 "
-                {...form.getInputProps("bio")}
-              />
+                      return { image };
+                    }}
+                  >
+                    {(status) => dropzoneChildren(status)}
+                  </Dropzone>
+                </Grid.Col>
+                <Grid.Col span={6}>
+                  <TextInput
+                    label="Full Name"
+                    required
+                    placeholder="Mila Kunis"
+                    {...form.getInputProps("name")}
+                  />
+
+                  <Textarea
+                    label="Bio"
+                    placeholder="I like to do human things 👽 "
+                    {...form.getInputProps("bio")}
+                  />
+                </Grid.Col>
+              </Grid>
+              <Space h="sm" />
               <TextInput
                 required
                 label="Email"
                 placeholder="your@email.com"
                 {...form.getInputProps("email")}
               />
+              <Space h="xs" />
 
-              <Checkbox
-                mt="md"
-                label="I agree to sell my privacy"
-                {...form.getInputProps("termsOfService", { type: "checkbox" })}
-              />
-              <Group position="right" mt="md">
+              <PasswordInput placeholder="Password" label="Password" required />
+              <Group position="center" grow mt="md">
                 <Button onClick={onFinish}>Submit</Button>
               </Group>
             </form>

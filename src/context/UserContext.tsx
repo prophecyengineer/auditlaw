@@ -10,12 +10,12 @@ import React, {
 
 // create context
 const UserContext = createContext({
-  login: {
-    username: "jhgh",
-  },
-  name: {
-    first: "Lotttie",
-  },
+  username: "lottieuser",
+  fullName: "Lottie",
+  image: "sfd",
+  email: "Lottie@b.com",
+  password: "sdfgb",
+  // updateUser: () => {},
 });
 
 const UserContextProvider = (props: {
@@ -30,18 +30,24 @@ const UserContextProvider = (props: {
     | undefined;
 }) => {
   // the value that will be given to the context
-  //   const [user, setUser] = useState();
-
-  // fetch a user from a fake backend API
+  // const [user, setUser] = useState();
 
   const user = {
-    login: {
-      username: "lottiegotit",
-    },
-    name: {
-      first: "Lottie",
-    },
+    username: "lottieuser",
+    fullName: "Lottie",
+    image: "sfd",
+    email: "Lottie@b.com",
+    password: "sdfgb",
   };
+
+  // const user = {
+  //   login: {
+  //     username: "lottiegotit",
+  //   },
+  //   name: {
+  //     first: "Lottie",
+  //   },
+  // };
 
   //   if (user === undefined) {
   //     const fetchUser = () => {

@@ -7,8 +7,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import { UserContext, UserContextProvider } from "./context/UserContext";
 import React, { useContext } from "react";
-
-import { SignUpProvider } from "./context/signUp";
+import FormProvider from "./context/FormContext";
 
 function App() {
   // const data = {
@@ -31,7 +30,9 @@ function App() {
       withNormalizeCSS
     >
       <UserContextProvider>
-        <AppLayout />
+        <FormProvider>
+          <AppLayout />
+        </FormProvider>
       </UserContextProvider>
     </MantineProvider>
   );

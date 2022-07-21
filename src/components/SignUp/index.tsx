@@ -15,10 +15,14 @@ import {
 } from "@mantine/core";
 import { Dropzone, DropzoneStatus, IMAGE_MIME_TYPE } from "@mantine/dropzone";
 import { useForm } from "@mantine/hooks";
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useContext, useState } from "react";
 import { At } from "tabler-icons-react";
 import { Web3Storage } from "web3.storage";
+import { FormContext } from "../../context/FormContext";
+import { UserContext } from "../../context/UserContext";
 const SignUp = () => {
+  const user = useContext(UserContext);
+  console.log(user, "user");
   const [opened, setOpened] = useState(false);
 
   function getAccessToken() {
@@ -32,7 +36,7 @@ const SignUp = () => {
 
   const client = makeStorageClient();
 
-  const [name, setName] = useState("");
+  const [newname, setNewName] = useState("");
   const [bio, setBio] = useState("");
   const [file, setFile] = useState("");
   const [image, setImage] = useState("");
@@ -41,7 +45,7 @@ const SignUp = () => {
       email: "",
       username: "",
       image: "",
-      name: "",
+      newname: "",
       bio: "",
       termsOfService: false,
     },
@@ -56,12 +60,14 @@ const SignUp = () => {
     // const image =
     //   "https://bafybeiadydnbo4ffr2vuhgehe3gnog4rxoebsyasolvoahych4vcioszhm.ipfs.dweb.link/mila.jpeg";
     const username = form.values.username;
-    const name = form.values.name;
+    const newname = form.values.newname;
     const bio = form.values.bio;
     console.log("full", image);
+
+    updateName(username);
     const data = {
       username: username,
-      name: name,
+      newname: newname,
       bio: bio,
       image: image,
     };
@@ -77,11 +83,14 @@ const SignUp = () => {
       <Avatar radius="xl" size="xl" src={null || image} alt="it's me" />
     </Group>
   );
+
+  const { name, updateName } = useContext(FormContext);
+
   return (
     <>
       <div>
-        <Text>This is sign in</Text>
-
+        <Text> Uername Context is : {name}</Text>
+        <Space h="sm" />
         <Modal
           overlayOpacity={0.55}
           overlayBlur={13}
@@ -131,7 +140,7 @@ const SignUp = () => {
                     label="Full Name"
                     required
                     placeholder="Mila Kunis"
-                    {...form.getInputProps("name")}
+                    {...form.getInputProps("newname")}
                   />
 
                   <Textarea
@@ -158,7 +167,7 @@ const SignUp = () => {
           </Box>
         </Modal>
 
-        <Group position="center">
+        <Group grow position="center">
           <Button onClick={() => setOpened(true)}>Join </Button>
         </Group>
       </div>

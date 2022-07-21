@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aws-amplify/cli": "^9.1.0",
     "@mantine/core": "^4.2.12",
     "@mantine/dropzone": "^4.2.12",
     "@mantine/form": "^4.2.12",
@@ -17,6 +18,8 @@
     "@types/node": "^16.11.45",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "aws-amplify-serverless-plugin": "^1.4.1",
+    "minimist": "^1.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
@@ -24,7 +27,6 @@
     "tabler-icons-react": "^1.53.0",
     "typescript": "^4.7.4",
     "web-vitals": "^2.1.4",
-    "minimist": "^1.2.5",
     "web3.storage": "^3.1.0"
   },
   "scripts": {

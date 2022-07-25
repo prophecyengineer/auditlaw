@@ -10,6 +10,7 @@ import {
   Space,
   Text,
   TextInput,
+  Title,
 } from "@mantine/core";
 import { useForm } from "@mantine/hooks";
 import { useContext, useState } from "react";
@@ -48,6 +49,9 @@ const SignIn = () => {
 
   return (
     <>
+      <Space h="xl" />
+      <Title order={1}>Join the space where the auditors hang out</Title>
+      <Space h="xl" />
       <SignUp />
 
       <Space h="sm" />

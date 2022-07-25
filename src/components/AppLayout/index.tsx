@@ -178,7 +178,7 @@ function AppLayout() {
               <Footer height={80} p="sm" pt={15}>
                 <Tabs variant="pills">
                   <Tabs.Tab
-                    value="1"
+                    value="home"
                     icon={
                       <ActionIcon size="xl" component={Link} to="/home">
                         <Home2 size={22} />
@@ -187,7 +187,7 @@ function AppLayout() {
                   ></Tabs.Tab>
 
                   <Tabs.Tab
-                    value="2"
+                    value="explore"
                     icon={
                       <ActionIcon size="xl" component={Link} to="/explore">
                         <Planet size={22} />
@@ -195,7 +195,7 @@ function AppLayout() {
                     }
                   ></Tabs.Tab>
                   <Tabs.Tab
-                    value="3"
+                    value="post"
                     icon={
                       <ActionIcon size="xl" component={Link} to="/post">
                         <CirclePlus size={22} />
@@ -203,7 +203,7 @@ function AppLayout() {
                     }
                   ></Tabs.Tab>
                   <Tabs.Tab
-                    value="4"
+                    value="chat"
                     icon={
                       <ActionIcon size="xl" component={Link} to="/chat">
                         <MessageCircle2 size={22} />
@@ -211,7 +211,7 @@ function AppLayout() {
                     }
                   ></Tabs.Tab>
                   <Tabs.Tab
-                    value="5"
+                    value="profile"
                     icon={
                       <ActionIcon size="xl" component={Link} to="/profile">
                         <Avatar src={user.image} size={22} />

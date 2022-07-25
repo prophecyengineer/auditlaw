@@ -37,31 +37,42 @@ import {
 import styles from "./PostCard.module.css";
 import { TalkModal } from "./TalkModal";
 
-export const PostCard = ({ talk }) => {
+type Example = {
+  talk: string;
+
+  speaker: string[];
+  category_id: string;
+  speakers: number;
+  audience: string;
+  username: string;
+  title: string;
+  image: string;
+  name: string;
+};
+export const PostCard = (talk: Example) => {
   const talkCategory = useStoreState(
     CategoryStore,
     getCategory(talk.category_id)
   );
 
-  const comments = useStoreState(CommentStore, getComment);
-
-  const [speakers, setSpeakers] = useState([]);
+  const [speakers, setSpeakers] = useState();
   const [showModal, setShowModal] = useState(false);
   const [opened, setOpened] = useState(false);
   const [likeOpened, setLikeOpen] = useState(false);
 
-  // console.log(talk);
+  console.log("wal", talk);
   useEffect(() => {
-    setSpeakers(getPeople(talk.speakers));
+    console.log("speaker", talk.talk);
+    // setSpeakers(getPeople(talk.speakers));
   }, [talk]);
 
   return (
     <Card className={styles.talkCard}>
-      <Group>
+      {/* <Group>
         {speakers.map((speaker, index) => {
           // console.log(speaker);
           return (
-            <Link to={`/${speaker.username}`}>
+            <Link to={`/${speaker["username"]}`}>
               <UnstyledButton
                 key={`speaker_${index}`}
                 onClick={() => console.log("try focusing button with tab")}
@@ -69,12 +80,12 @@ export const PostCard = ({ talk }) => {
                 <Group>
                   <Avatar
                     mr={-18}
-                    src={speaker.image}
+                    src={speaker["image"]}
                     size={40}
                     color="blue"
                   ></Avatar>
                   <div>
-                    <Text>{speaker.name}</Text>
+                    <Text>{speaker["name"]}</Text>
                     <Text size="xs" color="gray">
                       {talkCategory.name}
                     </Text>
@@ -84,7 +95,7 @@ export const PostCard = ({ talk }) => {
             </Link>
           );
         })}
-      </Group>
+      </Group> */}
 
       <Space h="md" />
 

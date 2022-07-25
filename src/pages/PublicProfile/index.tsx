@@ -55,7 +55,20 @@ const Profile = () => {
           <Grid>
             <Grid.Col>
               {talks.map((talk: any, talkIndex: Key | null | undefined) => {
-                return <PostCard key={talkIndex} talk={talk} />;
+                return (
+                  <PostCard
+                    key={talkIndex}
+                    talk={talk}
+                    speaker={[]}
+                    category_id={""}
+                    audience={""}
+                    username={""}
+                    title={""}
+                    image={""}
+                    name={""}
+                    speakers={0}
+                  />
+                );
               })}
             </Grid.Col>
           </Grid>

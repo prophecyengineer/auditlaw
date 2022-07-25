@@ -13,20 +13,29 @@ const Home = () => {
   return (
     <>
       <Title order={2}>Home </Title>
-      <Grid>
+      {/* <Grid>
         {talks.map((talk: any, talkIndex: Key | null | undefined) => {
-          return (
-            <Grid.Col span={4}>
-              <UserCard key={talkIndex} talk={talk} />
-            </Grid.Col>
-          );
+          return <UserCard key={talkIndex} talk={talk} />;
         })}
-      </Grid>
+      </Grid> */}
       <Space h={30} />
       <Grid>
         <Grid.Col>
           {talks.map((talk: any, talkIndex: Key | null | undefined) => {
-            return <PostCard key={talkIndex} talk={talk} />;
+            return (
+              <PostCard
+                key={talkIndex}
+                talk={talk}
+                speaker={[]}
+                category_id={""}
+                speakers={0}
+                audience={""}
+                username={""}
+                title={""}
+                image={""}
+                name={""}
+              />
+            );
           })}
         </Grid.Col>
       </Grid>

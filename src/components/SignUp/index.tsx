@@ -13,8 +13,8 @@ import {
   Textarea,
   TextInput,
 } from "@mantine/core";
-import { Dropzone, DropzoneStatus, IMAGE_MIME_TYPE } from "@mantine/dropzone";
-import { useForm } from "@mantine/hooks";
+import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
+import { useForm } from "@mantine/form";
 import { SetStateAction, useContext, useState } from "react";
 import { At } from "tabler-icons-react";
 import { Web3Storage } from "web3.storage";
@@ -73,16 +73,6 @@ const SignUp = () => {
     console.log("form data", data);
   };
 
-  const dropzoneChildren = (status: DropzoneStatus) => (
-    <Group
-      position="center"
-      spacing="lg"
-      style={{ minHeight: 50, pointerEvents: "none" }}
-    >
-      <Avatar radius="xl" size="xl" src={null || image} alt="it's me" />
-    </Group>
-  );
-
   const { name, updateName } = useContext(FormContext);
 
   return (
@@ -131,7 +121,18 @@ const SignUp = () => {
                       return { image };
                     }}
                   >
-                    {(status) => dropzoneChildren(status)}
+                    <Group
+                      position="center"
+                      spacing="lg"
+                      style={{ minHeight: 50, pointerEvents: "none" }}
+                    >
+                      <Avatar
+                        radius="xl"
+                        size="xl"
+                        src={null || image}
+                        alt="it's me"
+                      />
+                    </Group>
                   </Dropzone>
                 </Grid.Col>
                 <Grid.Col span={6}>

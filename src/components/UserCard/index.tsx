@@ -37,23 +37,24 @@ import { useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { Carousel } from "@mantine/carousel";
 //carousel of user cards to follow
-
-export const UserCard = ({ talk }) => {
-  const talkCategory = useStoreState(
-    CategoryStore,
-    getCategory(talk.category_id)
-  );
+type Example = {
+  talk: string[];
+};
+export const UserCard = (talk: Example) => {
   const [speakers, setSpeakers] = useState([]);
 
   // console.log(talk);
-  useEffect(() => setSpeakers(getPeople(talk.speakers)), [talk]);
-  const autoplay = useRef(
-    Autoplay({ delay: 2000 }, (emblaRoot) => emblaRoot.parentElement)
-  );
+  // useEffect(() => setSpeakers(getPeople(talk.speakers)), [talk]);
+  // const autoplay = useRef(
+  //   Autoplay(
+  //     { delay: 2000 },
+  //     (emblaRoot: { parentElement: any }) => emblaRoot.parentElement
+  //   )
+  // );
 
   return (
     <>
-      <Carousel
+      {/* <Carousel
         sx={{ maxWidth: 320 }}
         mx="auto"
         withIndicators
@@ -65,8 +66,8 @@ export const UserCard = ({ talk }) => {
         <Carousel.Slide>1</Carousel.Slide>
         <Carousel.Slide>2</Carousel.Slide>
         <Carousel.Slide>3</Carousel.Slide>
-        {/* ...other slides */}
-      </Carousel>
+       
+      </Carousel> */}
       <Card>
         <Card.Section>
           {/* <Image
@@ -80,14 +81,14 @@ export const UserCard = ({ talk }) => {
           // console.log(speaker);
           return (
             <div key={`speaker_${index}`}>
-              <Link to={`/${speaker.username}`}>
+              {/* <Link to={`/${speaker?.username}`}>
                 <UnstyledButton>
                   <Stack align="center" spacing="md">
-                    <Avatar radius="xl" size="lg" src={speaker.image} />
-                    <Text size="sm">@{speaker.username}</Text>
+                    <Avatar radius="xl" size="lg" src={speaker?.image} />
+                    <Text size="sm">@{speaker?.username}</Text>
                   </Stack>
                 </UnstyledButton>
-              </Link>
+              </Link> */}
               {/* <Button variant="light" color="blue" fullWidth mt="md" radius="md">
               follow
             </Button> */}

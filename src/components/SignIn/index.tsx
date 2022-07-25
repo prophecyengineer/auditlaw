@@ -12,7 +12,7 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
-import { useForm } from "@mantine/hooks";
+import { useForm } from "@mantine/form";
 import { useContext, useState } from "react";
 import { FormContext } from "../../context/FormContext";
 

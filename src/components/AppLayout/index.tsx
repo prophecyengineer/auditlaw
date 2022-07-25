@@ -113,7 +113,6 @@ import PublicProfile from "../../pages/PublicProfile";
 function AppLayout() {
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
-  const [activeTab, setActiveTab] = useState(1);
   const user = useContext(UserContext);
 
   return (
@@ -177,13 +176,9 @@ function AppLayout() {
             </MediaQuery>
             <MediaQuery largerThan="sm" styles={{ display: "none" }}>
               <Footer height={80} p="sm" pt={15}>
-                <Tabs
-                  active={activeTab}
-                  onTabChange={setActiveTab}
-                  variant="pills"
-                  grow
-                >
+                <Tabs variant="pills">
                   <Tabs.Tab
+                    value="1"
                     icon={
                       <ActionIcon size="xl" component={Link} to="/home">
                         <Home2 size={22} />
@@ -192,6 +187,7 @@ function AppLayout() {
                   ></Tabs.Tab>
 
                   <Tabs.Tab
+                    value="2"
                     icon={
                       <ActionIcon size="xl" component={Link} to="/explore">
                         <Planet size={22} />
@@ -199,6 +195,7 @@ function AppLayout() {
                     }
                   ></Tabs.Tab>
                   <Tabs.Tab
+                    value="3"
                     icon={
                       <ActionIcon size="xl" component={Link} to="/post">
                         <CirclePlus size={22} />
@@ -206,6 +203,7 @@ function AppLayout() {
                     }
                   ></Tabs.Tab>
                   <Tabs.Tab
+                    value="4"
                     icon={
                       <ActionIcon size="xl" component={Link} to="/chat">
                         <MessageCircle2 size={22} />
@@ -213,6 +211,7 @@ function AppLayout() {
                     }
                   ></Tabs.Tab>
                   <Tabs.Tab
+                    value="5"
                     icon={
                       <ActionIcon size="xl" component={Link} to="/profile">
                         <Avatar src={user.image} size={22} />

@@ -63,7 +63,7 @@
 
 // export default IsAuthedWrapper;
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import {
   AppShell,
   Burger,
@@ -77,11 +77,12 @@ import {
   Footer,
   Tabs,
   TabsProps,
+  ActionIcon,
 } from "@mantine/core";
 
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
-import About from "../About";
-import Home from "../Home";
+import Profile from "../../pages/Profile";
+import Home from "../../pages/Home";
 import { User } from "./_user";
 import { Brand } from "./_brand";
 
@@ -94,13 +95,19 @@ import {
   Planet,
   CirclePlus,
   UserCircle,
+  ChartBubble,
+  MessageCircle2,
 } from "tabler-icons-react";
 import SignUp from "../SignUp";
 import SignIn from "../SignIn";
+import Explore from "../../pages/Explore";
+import Post from "../../pages/Post";
+import Chat from "../../pages/Chat";
 
 function AppLayout() {
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
+  const [activeTab, setActiveTab] = useState(1);
 
   return (
     <Router>
@@ -158,13 +165,48 @@ function AppLayout() {
             </MediaQuery>
             <MediaQuery largerThan="sm" styles={{ display: "none" }}>
               <Footer height={80} p="sm" pt={15}>
-                <Tabs grow position="apart" variant="pills">
-                  <Tabs.Tab icon={<Home2 size={22} />}></Tabs.Tab>
+                <Tabs
+                  active={activeTab}
+                  onTabChange={setActiveTab}
+                  variant="pills"
+                  grow
+                >
+                  <Tabs.Tab
+                    icon={
+                      <ActionIcon size="xl" component={Link} to="/home">
+                        <Home2 size={22} />
+                      </ActionIcon>
+                    }
+                  ></Tabs.Tab>
 
-                  <Tabs.Tab icon={<Planet size={22} />}></Tabs.Tab>
-                  <Tabs.Tab icon={<CirclePlus size={22} />}></Tabs.Tab>
-                  <Tabs.Tab icon={<MessageCircle size={22} />}></Tabs.Tab>
-                  <Tabs.Tab icon={<UserCircle size={22} />}></Tabs.Tab>
+                  <Tabs.Tab
+                    icon={
+                      <ActionIcon size="xl" component={Link} to="/explore">
+                        <Planet size={22} />
+                      </ActionIcon>
+                    }
+                  ></Tabs.Tab>
+                  <Tabs.Tab
+                    icon={
+                      <ActionIcon size="xl" component={Link} to="/post">
+                        <CirclePlus size={22} />
+                      </ActionIcon>
+                    }
+                  ></Tabs.Tab>
+                  <Tabs.Tab
+                    icon={
+                      <ActionIcon size="xl" component={Link} to="/chat">
+                        <MessageCircle2 size={22} />
+                      </ActionIcon>
+                    }
+                  ></Tabs.Tab>
+                  <Tabs.Tab
+                    icon={
+                      <ActionIcon size="xl" component={Link} to="/profile">
+                        <UserCircle size={22} />
+                      </ActionIcon>
+                    }
+                  ></Tabs.Tab>
                 </Tabs>
               </Footer>
             </MediaQuery>
@@ -175,7 +217,10 @@ function AppLayout() {
           <Route path="/" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/post" element={<Post />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </AppShell>
     </Router>

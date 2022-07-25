@@ -98,7 +98,7 @@ const data = [
     icon: <DotsCircleHorizontal size={16} />,
     color: "grape",
     label: "More",
-    route: "/about",
+    route: "/profile",
   },
 ];
 

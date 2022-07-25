@@ -1,8 +1,8 @@
 import React from "react";
 
-const About = () => (
+const Explore = () => (
   <div>
-    <h1 className="title is-1">This is the About Page</h1>
+    <h1 className="title is-1">This is the Explore Page</h1>
     <p>
       Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
       inceptos himenaeos. Vestibulum ante ipsum primis in faucibus orci luctus
@@ -12,4 +12,4 @@ const About = () => (
   </div>
 );
 
-export default About;
+export default Explore;

@@ -3,8 +3,6 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { MantineProvider, Button, Text } from "@mantine/core";
 import AppLayout from "./components/AppLayout";
-import Home from "./components/Home";
-import About from "./components/About";
 import { UserContext, UserContextProvider } from "./context/UserContext";
 import React, { useContext } from "react";
 import FormProvider from "./context/FormContext";

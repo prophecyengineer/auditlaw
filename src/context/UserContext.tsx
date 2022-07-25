@@ -12,9 +12,14 @@ import React, {
 const UserContext = createContext({
   username: "lottieuser",
   fullName: "Lottie",
-  image: "sfd",
+  image: "https://media.giphy.com/media/X6WQuzT4KXxQs/giphy.gif",
   email: "Lottie@b.com",
   password: "sdfgb",
+  bio: "I am a human 👽 I do human things",
+  theme: {
+    backgroundImage:
+      "https://assets.objkt.media/file/assets-003/Qme5ibxKXRyovFtbgf2cVAGrQi7Z7tGwou95RS7nt5E4V4/artifact",
+  },
   // updateUser: () => {},
 });
 
@@ -33,11 +38,16 @@ const UserContextProvider = (props: {
   // const [user, setUser] = useState();
 
   const user = {
-    username: "lottieuser",
-    fullName: "Lottie",
-    image: "sfd",
+    username: "lottiecandoit",
+    fullName: "Lottie Bondareva",
+    image: "https://media.giphy.com/media/X6WQuzT4KXxQs/giphy.gif",
+    bio: "I am a human 👽 I do human things",
     email: "Lottie@b.com",
     password: "sdfgb",
+    theme: {
+      backgroundImage:
+        "https://assets.objkt.media/file/assets-003/Qme5ibxKXRyovFtbgf2cVAGrQi7Z7tGwou95RS7nt5E4V4/artifact",
+    },
   };
 
   // const user = {

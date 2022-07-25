@@ -1,12 +1,12 @@
 import { Button, Card, Grid, Title } from "@mantine/core";
 import { useStoreState } from "pullstate";
-import { PostStore } from "../../store";
+import { PeopleStore } from "../../store";
 import { getAllPeople } from "../../store/Selectors";
 
 import styles from "./TalkModal.module.css";
 
 export const TalkModal = ({ dismiss, talk, category, speakers }) => {
-  const people = useStoreState(PostStore, getAllPeople);
+  const people = useStoreState(PeopleStore, getAllPeople);
 
   return (
     <div className="talk-modal">

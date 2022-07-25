@@ -22,7 +22,6 @@ import { FormContext } from "../../context/FormContext";
 import { UserContext } from "../../context/UserContext";
 const SignUp = () => {
   const user = useContext(UserContext);
-  console.log(user, "user");
   const [opened, setOpened] = useState(false);
 
   function getAccessToken() {

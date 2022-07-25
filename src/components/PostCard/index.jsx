@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useStoreState } from "pullstate";
 import { CategoryStore } from "../../store";
-import { getPeople } from "../../store/PostStore";
+import { getPeople } from "../../store/PeopleStore";
 import { getCategory } from "../../store/Selectors";
+import CommentStore, { getComment } from "../../store/CommentStore";
+import CommentCard from "../CommentCard/index";
 import {
   Button,
   Card,
@@ -12,8 +14,10 @@ import {
   Text,
   Badge,
   Title,
+  UnstyledButton,
   Grid,
   Avatar,
+  Collapse,
   Group,
 } from "@mantine/core";
 import {
@@ -36,47 +40,106 @@ export const PostCard = ({ talk }) => {
     CategoryStore,
     getCategory(talk.category_id)
   );
+
+  const comments = useStoreState(CommentStore, getComment);
+
   const [speakers, setSpeakers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [opened, setOpened] = useState(false);
-  console.log(talk);
+  const [likeOpened, setLikeOpen] = useState(false);
+
+  // console.log(talk);
   useEffect(() => {
     setSpeakers(getPeople(talk.speakers));
   }, [talk]);
+
   return (
     <Card className={styles.talkCard}>
       <Group>
         {speakers.map((speaker, index) => {
-          console.log(speaker);
+          // console.log(speaker);
           return (
-            <div key={`speaker_${index}`} className={styles.talkSpeaker}>
-              <Avatar radius="xl" src={speaker.image} />
-            </div>
+            <UnstyledButton
+              key={`speaker_${index}`}
+              onClick={() => console.log("try focusing button with tab")}
+            >
+              <Group>
+                <Avatar
+                  mr={-18}
+                  src={speaker.image}
+                  size={40}
+                  color="blue"
+                ></Avatar>
+                <div>
+                  <Text>{speaker.name}</Text>
+                  <Text size="xs" color="gray">
+                    {talkCategory.name}
+                  </Text>
+                </div>
+              </Group>
+            </UnstyledButton>
           );
         })}
-        <Avatar radius="xl" />
-        <Title order={5}>{talkCategory.name}</Title>
       </Group>
 
       <Space h="md" />
-      <div className={styles.talkTitle}>
-        <Title order={2}>{talk.title}</Title>
-      </div>
+
+      <Title mt={-15} order={3}>
+        {talk.title}
+      </Title>
+      <Space h="sm" />
 
       <Group grow>
-        <Button variant="outline">
+        <Button size="xs" variant="subtle">
           <Check />
+          <Space w="xs" />
+
           <span>{talk.speakers}</span>
         </Button>
-        <Button variant="outline">
+
+        <Button size="xs" variant="subtle">
           <MessageCircle2 />
+          <Space w="xs" />
+
           <span>{talk.audience}</span>
         </Button>
-        <Button variant="outline">
+        <Button size="xs" variant="subtle">
           <Share />
+          <Space w="xs" />
           <span>{talk.speakers}</span>
         </Button>
       </Group>
+
+      <Button onClick={() => setLikeOpen((o) => !o)}>
+        Toggle with linear transition
+      </Button>
+
+      <Collapse
+        in={likeOpened}
+        transitionDuration={1000}
+        transitionTimingFunction="linear"
+      >
+        {comments.map((comment, index) => {
+          return (
+            <UnstyledButton
+              key={`comments_${index}`}
+              onClick={() => console.log("try focusing button with tab")}
+            >
+              <Group>
+                <Avatar
+                  src={comment.image}
+                  mr={-18}
+                  size={40}
+                  color="blue"
+                ></Avatar>
+                <div>
+                  <Text>{comment.name}</Text>
+                </div>
+              </Group>
+            </UnstyledButton>
+          );
+        })}
+      </Collapse>
 
       {/* <Button size="sm" mt={30} onClick={() => setOpened(true)}>
         Open Modal
@@ -84,10 +147,7 @@ export const PostCard = ({ talk }) => {
 
       <Modal opened={opened} onClose={() => setOpened(false)}>
         <TalkModal
-          dismiss={() => setShowModal(false)}
-          speakers={speakers}
-          talk={talk}
-          category={talkCategory}
+      
         />
       </Modal> */}
     </Card>

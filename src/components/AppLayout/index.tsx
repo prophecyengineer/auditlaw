@@ -63,7 +63,7 @@
 
 // export default IsAuthedWrapper;
 
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import {
   AppShell,
   Burger,
@@ -78,6 +78,8 @@ import {
   Tabs,
   TabsProps,
   ActionIcon,
+  Group,
+  Avatar,
 } from "@mantine/core";
 
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
@@ -97,17 +99,21 @@ import {
   UserCircle,
   ChartBubble,
   MessageCircle2,
+  Heart,
 } from "tabler-icons-react";
 import SignUp from "../SignUp";
 import SignIn from "../SignIn";
 import Explore from "../../pages/Explore";
 import Post from "../../pages/Post";
 import Chat from "../../pages/Chat";
+import Notification from "../../pages/Notification";
+import { UserContext } from "../../context/UserContext";
 
 function AppLayout() {
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
   const [activeTab, setActiveTab] = useState(1);
+  const user = useContext(UserContext);
 
   return (
     <Router>
@@ -144,14 +150,19 @@ function AppLayout() {
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <Brand />
               <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-                <Burger
+                {/* <Burger
                   opened={opened}
                   onClick={() => setOpened((o) => !o)}
                   size="md"
                   color={theme.colors.blue[6]}
                   mr="md"
                   mt="sm"
-                />
+                /> */}
+                <Group position="right">
+                  <ActionIcon size="xl" component={Link} to="/notification">
+                    <Heart size={22} />
+                  </ActionIcon>
+                </Group>
               </MediaQuery>
             </div>
           </Header>
@@ -203,7 +214,7 @@ function AppLayout() {
                   <Tabs.Tab
                     icon={
                       <ActionIcon size="xl" component={Link} to="/profile">
-                        <UserCircle size={22} />
+                        <Avatar src={user.image} size={22} />
                       </ActionIcon>
                     }
                   ></Tabs.Tab>
@@ -221,6 +232,7 @@ function AppLayout() {
           <Route path="/post" element={<Post />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/notification" element={<Notification />} />
         </Routes>
       </AppShell>
     </Router>

@@ -4,6 +4,7 @@ import { Key } from "react";
 import PostCard from "../../components/PostCard";
 import UserCard from "../../components/UserCard";
 import { TalkStore } from "../../store";
+import CommentStore, { getComment } from "../../store/CommentStore";
 import { getTalks } from "../../store/Selectors";
 
 const Home = () => {
@@ -16,7 +17,7 @@ const Home = () => {
         {talks.map((talk: any, talkIndex: Key | null | undefined) => {
           return (
             <Grid.Col span={4}>
-              <UserCard key={talkIndex} talk={talk} />{" "}
+              <UserCard key={talkIndex} talk={talk} />
             </Grid.Col>
           );
         })}

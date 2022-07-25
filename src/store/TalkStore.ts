@@ -103,7 +103,7 @@ export const addTalk = (details: {
 
 // export const addScoreToPlayer = (scoreboardId, playerIndex) => {
 
-// 	PostStore.update(state => {
+// 	PeopleStore.update(state => {
 
 // 		const scoreboardIndex = state.scoreboards.findIndex(scoreboard => scoreboard.id === parseInt(scoreboardId));
 // 		state.scoreboards[scoreboardIndex].players[playerIndex].score += 1;

@@ -16,7 +16,7 @@ const CategoryStore = new Store({
     },
     {
       id: 4,
-      name: "@mosh",
+      name: "@moshimoo8899",
     },
   ],
 });

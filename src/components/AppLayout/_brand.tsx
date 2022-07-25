@@ -23,9 +23,7 @@ export function Brand() {
         }`,
       })}
     >
-      <Group position="apart">
-        <Logo />
-      </Group>
+      <Logo />
     </Box>
   );
 }

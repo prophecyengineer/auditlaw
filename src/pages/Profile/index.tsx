@@ -1,15 +1,57 @@
-import React from "react";
+import {
+  Avatar,
+  Stack,
+  Title,
+  Text,
+  BackgroundImage,
+  Card,
+  Button,
+  Grid,
+  Space,
+} from "@mantine/core";
+import React, { useContext } from "react";
+import PostCard from "../../components/PostCard";
+import { useStoreState } from "pullstate";
+import { Key } from "react";
+import UserCard from "../../components/UserCard";
+import { TalkStore } from "../../store";
+import CommentStore, { getComment } from "../../store/CommentStore";
+import { getTalks } from "../../store/Selectors";
+import { UserContext } from "../../context/UserContext";
 
-const Profile = () => (
-  <div>
-    <h1 className="title is-1">This is the Profile Page</h1>
-    <p>
-      Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-      inceptos himenaeos. Vestibulum ante ipsum primis in faucibus orci luctus
-      et ultrices posuere cubilia curae; Duis consequat nulla ac ex consequat,
-      in efficitur arcu congue. Nam fermentum commodo egestas.
-    </p>
-  </div>
-);
+const Profile = () => {
+  const user = useContext(UserContext);
+  const talks = useStoreState(TalkStore, getTalks);
+  return (
+    <>
+      <BackgroundImage radius="lg" src={user.theme.backgroundImage}>
+        <Stack align="center">
+          <Card>
+            <Avatar size="xl" src={user.image} />
+            <Title order={3}>{user.fullName}</Title>
+            <Title order={5}>{user.username}</Title>
+            <Text>{user.bio}</Text>
+            <Space h="md" />
+            <Grid>
+              <Grid.Col span={4}>
+                <Button>Follow</Button>
+              </Grid.Col>
+              <Grid.Col span={4}>
+                <Button>Subscribe</Button>
+              </Grid.Col>
+            </Grid>
+          </Card>
+          <Grid>
+            <Grid.Col>
+              {talks.map((talk: any, talkIndex: Key | null | undefined) => {
+                return <PostCard key={talkIndex} talk={talk} />;
+              })}
+            </Grid.Col>
+          </Grid>
+        </Stack>
+      </BackgroundImage>
+    </>
+  );
+};
 
 export default Profile;

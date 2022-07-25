@@ -4,19 +4,19 @@ const CategoryStore = new Store({
   categories: [
     {
       id: 1,
-      name: "@alex",
+      name: "like",
     },
     {
       id: 2,
-      name: "@lottie",
+      name: "comment",
     },
     {
       id: 3,
-      name: "@tetris",
+      name: "subscription",
     },
     {
       id: 4,
-      name: "@moshimoo8899",
+      name: "follow",
     },
   ],
 });

@@ -18,7 +18,7 @@ const NotificationStore = new Store({
       name: "Elizabeth Moore",
       image: "/avatars/Avatar-2.png",
       username: "lizzyghi",
-      bio: "I am a human on planet earth",
+      notification: "liked your post",
     },
     {
       id: 14,

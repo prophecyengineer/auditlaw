@@ -90,7 +90,11 @@ export const PostCard = ({ talk }) => {
       <Space h="sm" />
 
       <Group grow>
-        <Button size="xs" variant="subtle">
+        <Button
+          onClick={() => setLikeOpen((o) => !o)}
+          size="xs"
+          variant="subtle"
+        >
           <Check />
           <Space w="xs" />
 
@@ -110,16 +114,13 @@ export const PostCard = ({ talk }) => {
         </Button>
       </Group>
 
-      <Button onClick={() => setLikeOpen((o) => !o)}>
-        Toggle with linear transition
-      </Button>
-
       <Collapse
         in={likeOpened}
         transitionDuration={1000}
         transitionTimingFunction="linear"
       >
-        {comments.map((comment, index) => {
+        comment one !
+        {/* {comments.map((comment, index) => {
           return (
             <UnstyledButton
               key={`comments_${index}`}
@@ -138,18 +139,8 @@ export const PostCard = ({ talk }) => {
               </Group>
             </UnstyledButton>
           );
-        })}
+        })} */}
       </Collapse>
-
-      {/* <Button size="sm" mt={30} onClick={() => setOpened(true)}>
-        Open Modal
-      </Button>
-
-      <Modal opened={opened} onClose={() => setOpened(false)}>
-        <TalkModal
-      
-        />
-      </Modal> */}
     </Card>
   );
 };

@@ -1,16 +1,30 @@
-const Notification = () => {
+import { Grid, Text, Title, Card, Divider, Space } from "@mantine/core";
+import { useStoreState } from "pullstate";
+import { Key } from "react";
+import NotificationCard from "../../components/NotificationCard";
+import PostCard from "../../components/PostCard";
+import UserCard from "../../components/UserCard";
+import { TalkStore } from "../../store";
+import CommentStore, { getComment } from "../../store/CommentStore";
+import { getTalks } from "../../store/Selectors";
+
+const Home = () => {
+  const talks = useStoreState(TalkStore, getTalks);
+
   return (
     <>
-      <h1 className="title is-1">This is the Notification</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras gravida,
-        risus at dapibus aliquet, elit quam scelerisque tortor, nec accumsan
-        eros nulla interdum justo. Pellentesque dignissim, sapien et congue
-        rutrum, lorem tortor dapibus turpis, sit amet vestibulum eros mi et
-        odio.
-      </p>
+      <Title order={2}>Activity </Title>
+
+      <Space h={30} />
+      <Grid>
+        <Grid.Col>
+          {talks.map((talk: any, talkIndex: Key | null | undefined) => {
+            return <NotificationCard key={talkIndex} talk={talk} />;
+          })}
+        </Grid.Col>
+      </Grid>
     </>
   );
 };
 
-export default Notification;
+export default Home;

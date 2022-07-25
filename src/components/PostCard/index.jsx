@@ -5,6 +5,8 @@ import { getPeople } from "../../store/PeopleStore";
 import { getCategory } from "../../store/Selectors";
 import CommentStore, { getComment } from "../../store/CommentStore";
 import CommentCard from "../CommentCard/index";
+import { Link } from "react-router-dom";
+
 import {
   Button,
   Card,
@@ -59,25 +61,27 @@ export const PostCard = ({ talk }) => {
         {speakers.map((speaker, index) => {
           // console.log(speaker);
           return (
-            <UnstyledButton
-              key={`speaker_${index}`}
-              onClick={() => console.log("try focusing button with tab")}
-            >
-              <Group>
-                <Avatar
-                  mr={-18}
-                  src={speaker.image}
-                  size={40}
-                  color="blue"
-                ></Avatar>
-                <div>
-                  <Text>{speaker.name}</Text>
-                  <Text size="xs" color="gray">
-                    {talkCategory.name}
-                  </Text>
-                </div>
-              </Group>
-            </UnstyledButton>
+            <Link to={`/${speaker.username}`}>
+              <UnstyledButton
+                key={`speaker_${index}`}
+                onClick={() => console.log("try focusing button with tab")}
+              >
+                <Group>
+                  <Avatar
+                    mr={-18}
+                    src={speaker.image}
+                    size={40}
+                    color="blue"
+                  ></Avatar>
+                  <div>
+                    <Text>{speaker.name}</Text>
+                    <Text size="xs" color="gray">
+                      {talkCategory.name}
+                    </Text>
+                  </div>
+                </Group>
+              </UnstyledButton>
+            </Link>
           );
         })}
       </Group>

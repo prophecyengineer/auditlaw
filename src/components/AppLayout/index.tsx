@@ -108,6 +108,7 @@ import Post from "../../pages/Post";
 import Chat from "../../pages/Chat";
 import Notification from "../../pages/Notification";
 import { UserContext } from "../../context/UserContext";
+import PublicProfile from "../../pages/PublicProfile";
 
 function AppLayout() {
   const [opened, setOpened] = useState(false);
@@ -233,6 +234,7 @@ function AppLayout() {
           <Route path="/chat" element={<Chat />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/notification" element={<Notification />} />
+          <Route element={<PublicProfile />} path="/:userurl" />
         </Routes>
       </AppShell>
     </Router>

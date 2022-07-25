@@ -32,6 +32,7 @@ import {
   UserCircle,
 } from "tabler-icons-react";
 import styles from "./UserCard.module.css";
+import { Link } from "react-router-dom";
 
 export const UserCard = ({ talk }) => {
   const talkCategory = useStoreState(
@@ -59,12 +60,14 @@ export const UserCard = ({ talk }) => {
         // console.log(speaker);
         return (
           <div key={`speaker_${index}`}>
-            <UnstyledButton>
-              <Stack align="center" spacing="md">
-                <Avatar radius="xl" size="lg" src={speaker.image} />
-                <Text size="sm">@{speaker.username}</Text>
-              </Stack>
-            </UnstyledButton>
+            <Link to={`/${speaker.username}`}>
+              <UnstyledButton>
+                <Stack align="center" spacing="md">
+                  <Avatar radius="xl" size="lg" src={speaker.image} />
+                  <Text size="sm">@{speaker.username}</Text>
+                </Stack>
+              </UnstyledButton>
+            </Link>
             {/* <Button variant="light" color="blue" fullWidth mt="md" radius="md">
               follow
             </Button> */}

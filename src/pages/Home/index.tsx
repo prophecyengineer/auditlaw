@@ -20,7 +20,7 @@ const Home = () => {
       </Grid> */}
       <Space h={30} />
       <Grid>
-        <Grid.Col>
+        {/* <Grid.Col>
           {talks.map((talk: any, talkIndex: Key | null | undefined) => {
             return (
               <PostCard
@@ -37,7 +37,7 @@ const Home = () => {
               />
             );
           })}
-        </Grid.Col>
+        </Grid.Col> */}
       </Grid>
     </>
   );

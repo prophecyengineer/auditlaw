@@ -40,6 +40,12 @@ import { TalkModal } from "./TalkModal";
 type Example = {
   talk: string;
 
+  //   locations: {
+  //   name: string;
+  //   id: string;
+  //   description: string;
+  //   photo: string;
+  // }[];
   speaker: string[];
   category_id: string;
   speakers: number;
@@ -48,23 +54,24 @@ type Example = {
   title: string;
   image: string;
   name: string;
+  bio: string;
 };
+
 export const PostCard = (talk: Example) => {
   const talkCategory = useStoreState(
     CategoryStore,
     getCategory(talk.category_id)
   );
 
-  const [speakers, setSpeakers] = useState();
+  const [speakers, setSpeakers] = useState<Example>();
   const [showModal, setShowModal] = useState(false);
   const [opened, setOpened] = useState(false);
   const [likeOpened, setLikeOpen] = useState(false);
 
   console.log("wal", talk);
-  useEffect(() => {
-    console.log("speaker", talk.talk);
-    // setSpeakers(getPeople(talk.speakers));
-  }, [talk]);
+  // useEffect(() => {
+  //   setSpeakers(getPeople(talk.speakers));
+  // }, [talk]);
 
   return (
     <Card className={styles.talkCard}>

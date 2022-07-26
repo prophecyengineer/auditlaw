@@ -52,7 +52,7 @@ const Profile = () => {
               </Grid.Col>
             </Grid>
           </Card>
-          <Grid>
+          {/* <Grid>
             <Grid.Col>
               {talks.map((talk: any, talkIndex: Key | null | undefined) => {
                 return (
@@ -65,13 +65,14 @@ const Profile = () => {
                     username={""}
                     title={""}
                     image={""}
+                    bio={""}
                     name={""}
                     speakers={0}
                   />
                 );
               })}
             </Grid.Col>
-          </Grid>
+          </Grid> */}
         </Stack>
       </BackgroundImage>
     </>

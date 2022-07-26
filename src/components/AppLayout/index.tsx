@@ -176,48 +176,50 @@ function AppLayout() {
             </MediaQuery>
             <MediaQuery largerThan="sm" styles={{ display: "none" }}>
               <Footer height={80} p="sm" pt={15}>
-                <Tabs variant="pills">
-                  <Tabs.Tab
-                    value="home"
-                    icon={
-                      <ActionIcon size="xl" component={Link} to="/home">
-                        <Home2 size={22} />
-                      </ActionIcon>
-                    }
-                  ></Tabs.Tab>
+                <Tabs variant="pills" defaultValue="home">
+                  <Tabs.List>
+                    <Tabs.Tab
+                      value="home"
+                      icon={
+                        <ActionIcon size="xl" component={Link} to="/home">
+                          <Home2 size={22} />
+                        </ActionIcon>
+                      }
+                    ></Tabs.Tab>
 
-                  <Tabs.Tab
-                    value="explore"
-                    icon={
-                      <ActionIcon size="xl" component={Link} to="/explore">
-                        <Planet size={22} />
-                      </ActionIcon>
-                    }
-                  ></Tabs.Tab>
-                  <Tabs.Tab
-                    value="post"
-                    icon={
-                      <ActionIcon size="xl" component={Link} to="/post">
-                        <CirclePlus size={22} />
-                      </ActionIcon>
-                    }
-                  ></Tabs.Tab>
-                  <Tabs.Tab
-                    value="chat"
-                    icon={
-                      <ActionIcon size="xl" component={Link} to="/chat">
-                        <MessageCircle2 size={22} />
-                      </ActionIcon>
-                    }
-                  ></Tabs.Tab>
-                  <Tabs.Tab
-                    value="profile"
-                    icon={
-                      <ActionIcon size="xl" component={Link} to="/profile">
-                        <Avatar src={user.image} size={22} />
-                      </ActionIcon>
-                    }
-                  ></Tabs.Tab>
+                    <Tabs.Tab
+                      value="explore"
+                      icon={
+                        <ActionIcon size="xl" component={Link} to="/explore">
+                          <Planet size={22} />
+                        </ActionIcon>
+                      }
+                    ></Tabs.Tab>
+                    <Tabs.Tab
+                      value="post"
+                      icon={
+                        <ActionIcon size="xl" component={Link} to="/post">
+                          <CirclePlus size={22} />
+                        </ActionIcon>
+                      }
+                    ></Tabs.Tab>
+                    <Tabs.Tab
+                      value="chat"
+                      icon={
+                        <ActionIcon size="xl" component={Link} to="/chat">
+                          <MessageCircle2 size={22} />
+                        </ActionIcon>
+                      }
+                    ></Tabs.Tab>
+                    <Tabs.Tab
+                      value="profile"
+                      icon={
+                        <ActionIcon size="xl" component={Link} to="/profile">
+                          <Avatar src={user.image} size={22} />
+                        </ActionIcon>
+                      }
+                    ></Tabs.Tab>
+                  </Tabs.List>
                 </Tabs>
               </Footer>
             </MediaQuery>

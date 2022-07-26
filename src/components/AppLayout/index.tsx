@@ -1,68 +1,3 @@
-// // import { UserProvider } from "../../context/user";
-// // import { useAuthenticator } from "@aws-amplify/ui-react";
-// import {
-//   JSXElementConstructor,
-//   ReactElement,
-//   ReactFragment,
-//   ReactPortal,
-//   useState,
-// } from "react";
-// import { BrowserRouter, Link } from "react-router-dom";
-
-// // import AuthedOnboardingWrapper from "../Wrapper/AuthedOnboardingWrapper";
-// import AuthedWrapper from "./AuthedWrapper";
-// // import NotAuthedWrapper from "../IsAuthedWrapper/NotAuthedWrapper";
-
-// const IsAuthedWrapper = (props: {
-//   children:
-//     | string
-//     | number
-//     | boolean
-//     | ReactElement<
-//         // import { useAuthenticator } from "@aws-amplify/ui-react";
-//         any,
-//         string | JSXElementConstructor<any>
-//       >
-//     | ReactFragment
-//     | ReactPortal
-//     | null
-//     | undefined;
-// }) => {
-//   //chnage user for UserContext user
-//   // const { user, signOut } = useAuthenticator((context) => [context.user]);
-//   // console.log("wrapper found a user", user);
-
-//   //if user + username found
-//   // if (user !== undefined) {
-//   return (
-//     <>
-//       <AuthedWrapper children={undefined}></AuthedWrapper>
-//     </>
-//   );
-//   // }
-
-//   //if no username found in context
-//   //   if (user !== undefined) {
-//   //     return (
-//   //       <>
-//   //         <AuthedOnboardingWrapper>{children}</AuthedOnboardingWrapper>
-//   //       </>
-//   //     );
-//   //   }
-//   //   if (user === undefined) {
-//   //   router.pathname === "/home" ||
-//   //     router.pathname === "/profile" ||
-//   //     router.pathname === "/explore";
-//   //     return (
-//   //       <>
-//   //         <NotAuthedWrapper>{children}</NotAuthedWrapper>
-//   //       </>
-//   //     );
-//   //   }
-// };
-
-// export default IsAuthedWrapper;
-
 import { useCallback, useContext, useState } from "react";
 import {
   AppShell,
@@ -70,16 +5,13 @@ import {
   Header,
   MediaQuery,
   Navbar,
-  Text,
-  useMantineTheme,
-  Button,
-  Space,
   Footer,
   Tabs,
   TabsProps,
   ActionIcon,
   Group,
   Avatar,
+  UnstyledButton,
 } from "@mantine/core";
 
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
@@ -100,6 +32,7 @@ import {
   ChartBubble,
   MessageCircle2,
   Heart,
+  Container,
 } from "tabler-icons-react";
 import SignUp from "../SignUp";
 import SignIn from "../SignIn";
@@ -112,7 +45,6 @@ import PublicProfile from "../../pages/PublicProfile";
 
 function AppLayout() {
   const [opened, setOpened] = useState(false);
-  const theme = useMantineTheme();
   const user = useContext(UserContext);
 
   return (
@@ -158,11 +90,10 @@ function AppLayout() {
                   mr="md"
                   mt="sm"
                 /> */}
-                <Group position="right">
-                  <ActionIcon size="xl" component={Link} to="/notification">
-                    <Heart size={22} />
-                  </ActionIcon>
-                </Group>
+
+                <Link style={{ padding: "30px" }} to="/notification">
+                  <Heart size={22} />
+                </Link>
               </MediaQuery>
             </div>
           </Header>
@@ -170,55 +101,99 @@ function AppLayout() {
         footer={
           <>
             <MediaQuery largerThan="sm" styles={{ display: "" }}>
-              <Footer height={80} p="sm" pt={15}>
+              <Footer p={0} pt={0} height={""}>
                 {" "}
               </Footer>
             </MediaQuery>
             <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-              <Footer height={80} p="sm" pt={15}>
-                <Tabs variant="pills" defaultValue="home">
-                  <Tabs.List>
-                    <Tabs.Tab
-                      value="home"
-                      icon={
-                        <ActionIcon size="xl" component={Link} to="/home">
-                          <Home2 size={22} />
-                        </ActionIcon>
-                      }
-                    ></Tabs.Tab>
+              <Footer p={0} pt={0} height={""}>
+                <Tabs
+                  unstyled
+                  styles={(theme) => ({
+                    tab: {
+                      ...theme.fn.focusStyles(),
+                      backgroundColor:
+                        theme.colorScheme === "dark"
+                          ? theme.colors.dark[6]
+                          : theme.white,
+                      color:
+                        theme.colorScheme === "dark"
+                          ? theme.colors.dark[0]
+                          : theme.colors.gray[9],
+                      border: `1px solid ${
+                        theme.colorScheme === "dark"
+                          ? theme.colors.dark[6]
+                          : theme.colors.gray[4]
+                      }`,
+                      padding: `${theme.spacing.sm}px ${theme.spacing.lg}px`,
+                      cursor: "pointer",
+                      fontSize: theme.fontSizes.sm,
+                      display: "flex",
+                      alignItems: "center",
 
-                    <Tabs.Tab
-                      value="explore"
-                      icon={
-                        <ActionIcon size="xl" component={Link} to="/explore">
-                          <Planet size={22} />
-                        </ActionIcon>
-                      }
-                    ></Tabs.Tab>
-                    <Tabs.Tab
-                      value="post"
-                      icon={
-                        <ActionIcon size="xl" component={Link} to="/post">
-                          <CirclePlus size={22} />
-                        </ActionIcon>
-                      }
-                    ></Tabs.Tab>
-                    <Tabs.Tab
-                      value="chat"
-                      icon={
-                        <ActionIcon size="xl" component={Link} to="/chat">
-                          <MessageCircle2 size={22} />
-                        </ActionIcon>
-                      }
-                    ></Tabs.Tab>
-                    <Tabs.Tab
-                      value="profile"
-                      icon={
-                        <ActionIcon size="xl" component={Link} to="/profile">
-                          <Avatar src={user.image} size={22} />
-                        </ActionIcon>
-                      }
-                    ></Tabs.Tab>
+                      "&:disabled": {
+                        opacity: 0.5,
+                        cursor: "not-allowed",
+                      },
+
+                      "&:not(:first-of-type)": {
+                        borderLeft: 0,
+                      },
+
+                      "&:first-of-type": {
+                        borderTopLeftRadius: theme.radius.md,
+                        borderBottomLeftRadius: theme.radius.md,
+                      },
+
+                      "&:last-of-type": {
+                        borderTopRightRadius: theme.radius.md,
+                        borderBottomRightRadius: theme.radius.md,
+                      },
+
+                      "&[data-active]": {
+                        backgroundColor: theme.colors.blue[7],
+                        borderColor: theme.colors.blue[7],
+                        color: theme.white,
+                      },
+                    },
+
+                    tabIcon: {
+                      alignItems: "center",
+                    },
+
+                    tabsList: {
+                      display: "flex",
+                    },
+                  })}
+                  defaultValue="home"
+                >
+                  <Tabs.List>
+                    <Link to="/home">
+                      <Tabs.Tab value="home">
+                        <Home2 size={22} />
+                      </Tabs.Tab>
+                    </Link>
+
+                    <Link to="/explore">
+                      <Tabs.Tab value="explore">
+                        <Planet size={22} />
+                      </Tabs.Tab>
+                    </Link>
+                    <Link to="/post">
+                      <Tabs.Tab value="post">
+                        <CirclePlus size={22} />
+                      </Tabs.Tab>
+                    </Link>
+                    <Link to="/chat">
+                      <Tabs.Tab value="chat">
+                        <MessageCircle2 size={22} />
+                      </Tabs.Tab>
+                    </Link>
+                    <Link to="/profile">
+                      <Tabs.Tab value="profile">
+                        <Avatar src={user.image} size={22} />
+                      </Tabs.Tab>
+                    </Link>
                   </Tabs.List>
                 </Tabs>
               </Footer>

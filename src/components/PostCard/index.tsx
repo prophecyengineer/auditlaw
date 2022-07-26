@@ -69,10 +69,9 @@ export const PostCard = (talk: Example) => {
     <>
       {talks.map((talk: any, talkIndex: Key | null | undefined) => {
         return (
-          <Card className={styles.talkCard}>
+          <Card key={`speaker_${talkIndex}`} className={styles.talkCard}>
             <Link to={`/${talk["username"]}`}>
               <UnstyledButton
-                key={`speaker_${talkIndex}`}
                 onClick={() => console.log("try focusing button with tab")}
               >
                 <Group>

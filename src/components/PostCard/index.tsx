@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useStoreState } from "pullstate";
-import { CategoryStore } from "../../store";
+import { CategoryStore, TalkStore } from "../../store";
 import { getPeople } from "../../store/PeopleStore";
-import { getCategory } from "../../store/Selectors";
+import { getCategory, getTalks } from "../../store/Selectors";
 import CommentStore, { getComment } from "../../store/CommentStore";
 import CommentCard from "../CommentCard/index";
 import { Link } from "react-router-dom";
+import { Key } from "react";
 
 import {
   Button,
@@ -35,7 +36,7 @@ import {
   UserCircle,
 } from "tabler-icons-react";
 import styles from "./PostCard.module.css";
-import { TalkModal } from "./TalkModal";
+import NotificationCard from "../NotificationCard";
 
 type Example = {
   talk: string;
@@ -58,112 +59,72 @@ type Example = {
 };
 
 export const PostCard = (talk: Example) => {
-  const talkCategory = useStoreState(
-    CategoryStore,
-    getCategory(talk.category_id)
-  );
+  const talks = useStoreState(TalkStore, getTalks);
 
-  const [speakers, setSpeakers] = useState<Example>();
   const [showModal, setShowModal] = useState(false);
   const [opened, setOpened] = useState(false);
   const [likeOpened, setLikeOpen] = useState(false);
 
-  console.log("wal", talk);
-  // useEffect(() => {
-  //   setSpeakers(getPeople(talk.speakers));
-  // }, [talk]);
-
   return (
-    <Card className={styles.talkCard}>
-      {/* <Group>
-        {speakers.map((speaker, index) => {
-          // console.log(speaker);
-          return (
-            <Link to={`/${speaker["username"]}`}>
+    <>
+      {talks.map((talk: any, talkIndex: Key | null | undefined) => {
+        return (
+          <Card className={styles.talkCard}>
+            <Link to={`/${talk["username"]}`}>
               <UnstyledButton
-                key={`speaker_${index}`}
+                key={`speaker_${talkIndex}`}
                 onClick={() => console.log("try focusing button with tab")}
               >
                 <Group>
-                  <Avatar
-                    mr={-18}
-                    src={speaker["image"]}
-                    size={40}
-                    color="blue"
-                  ></Avatar>
+                  <Avatar mr={-18} src={talk["image"]} size={40}></Avatar>
                   <div>
-                    <Text>{speaker["name"]}</Text>
-                    <Text size="xs" color="gray">
-                      {talkCategory.name}
-                    </Text>
+                    <Text>{talk["name"]}</Text>
                   </div>
                 </Group>
               </UnstyledButton>
             </Link>
-          );
-        })}
-      </Group> */}
+            <Space h="md" />
+            <Title mt={-15} order={3}>
+              {talk.title}
+            </Title>
+            <Space h="sm" />
+            <Group grow>
+              <Button
+                onClick={() => setLikeOpen((o) => !o)}
+                size="xs"
+                variant="subtle"
+              >
+                <Check />
+                <Space w="xs" />
 
-      <Space h="md" />
+                <span>{talk.speakers}</span>
+              </Button>
 
-      <Title mt={-15} order={3}>
-        {talk.title}
-      </Title>
-      <Space h="sm" />
+              <Button size="xs" variant="subtle">
+                <MessageCircle2 />
+                <Space w="xs" />
 
-      <Group grow>
-        <Button
-          onClick={() => setLikeOpen((o) => !o)}
-          size="xs"
-          variant="subtle"
-        >
-          <Check />
-          <Space w="xs" />
-
-          <span>{talk.speakers}</span>
-        </Button>
-
-        <Button size="xs" variant="subtle">
-          <MessageCircle2 />
-          <Space w="xs" />
-
-          <span>{talk.audience}</span>
-        </Button>
-        <Button size="xs" variant="subtle">
-          <Share />
-          <Space w="xs" />
-          <span>{talk.speakers}</span>
-        </Button>
-      </Group>
-
-      <Collapse
-        in={likeOpened}
-        transitionDuration={1000}
-        transitionTimingFunction="linear"
-      >
-        comment one !
-        {/* {comments.map((comment, index) => {
-          return (
-            <UnstyledButton
-              key={`comments_${index}`}
-              onClick={() => console.log("try focusing button with tab")}
+                <span>{talk.audience}</span>
+              </Button>
+              <Button size="xs" variant="subtle">
+                <Share />
+                <Space w="xs" />
+                <span>{talk.speakers}</span>
+              </Button>
+            </Group>
+            <Collapse
+              in={likeOpened}
+              transitionDuration={1000}
+              transitionTimingFunction="linear"
             >
-              <Group>
-                <Avatar
-                  src={comment.image}
-                  mr={-18}
-                  size={40}
-                  color="blue"
-                ></Avatar>
-                <div>
-                  <Text>{comment.name}</Text>
-                </div>
-              </Group>
-            </UnstyledButton>
-          );
-        })} */}
-      </Collapse>
-    </Card>
+              {talks.map((talk: any, talkIndex: Key | null | undefined) => {
+                return <NotificationCard key={talkIndex} talk={talk} />;
+              })}
+            </Collapse>
+          </Card>
+        );
+      })}
+    </>
   );
 };
 

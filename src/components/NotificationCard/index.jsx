@@ -5,6 +5,7 @@ import { getPeople } from "../../store/PeopleStore";
 import { getCategory } from "../../store/Selectors";
 import CommentStore, { getComment } from "../../store/CommentStore";
 import CommentCard from "../CommentCard/index";
+import { Link } from "react-router-dom";
 import {
   Button,
   Card,
@@ -60,26 +61,25 @@ export const NotificationCard = ({ talk }) => {
           // console.log(speaker);
           return (
             <>
-              <Grid.Col>
-                <UnstyledButton
-                  key={`speaker_${index}`}
-                  onClick={() => console.log("try focusing button with tab")}
-                >
-                  <Group grow>
-                    <Avatar
-                      mr={-18}
-                      src={speaker.image}
-                      size={40}
-                      color="blue"
-                    ></Avatar>
-                    <div>
-                      <Text>{speaker.name}</Text>
-                      <Text size="xs" color="gray">
-                        {talkCategory.name}
-                      </Text>
-                    </div>
-                  </Group>
-                </UnstyledButton>
+              <Grid.Col grow>
+                <Link to={`/${speaker?.username}`}>
+                  <UnstyledButton
+                    key={`speaker_${index}`}
+                    onClick={() => console.log("try focusing button with tab")}
+                  >
+                    <Group position="center" grow>
+                      <>
+                        <Avatar src={speaker.image} size={40}></Avatar>{" "}
+                        <Text size="xs" weight="bold">
+                          {speaker.username}
+                        </Text>
+                        <Text ml={-20} size="xs">
+                          {talkCategory.name}
+                        </Text>
+                      </>
+                    </Group>
+                  </UnstyledButton>
+                </Link>
                 <Divider />
               </Grid.Col>
             </>

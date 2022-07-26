@@ -16,13 +16,10 @@ const Home = () => {
       <Title order={2}>Activity </Title>
 
       <Space h={30} />
-      <Grid>
-        <Grid.Col>
-          {talks.map((talk: any, talkIndex: Key | null | undefined) => {
-            return <NotificationCard key={talkIndex} talk={talk} />;
-          })}
-        </Grid.Col>
-      </Grid>
+
+      {talks.map((talk: any, talkIndex: Key | null | undefined) => {
+        return <NotificationCard key={talkIndex} talk={talk} />;
+      })}
     </>
   );
 };

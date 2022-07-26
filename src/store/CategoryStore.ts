@@ -4,19 +4,19 @@ const CategoryStore = new Store({
   categories: [
     {
       id: 1,
-      name: "like",
+      name: "liked your story",
     },
     {
       id: 2,
-      name: "comment",
+      name: "commented on your post",
     },
     {
       id: 3,
-      name: "subscription",
+      name: "subscribed to you",
     },
     {
       id: 4,
-      name: "follow",
+      name: "started following you",
     },
   ],
 });

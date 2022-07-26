@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.6.9",
     "@aws-amplify/cli": "^9.1.0",
     "@emotion/react": "^11.9.3",
     "@mantine/carousel": "^5.0.0",
@@ -23,6 +24,7 @@
     "aws-amplify-serverless-plugin": "^1.4.1",
     "embla-carousel-autoplay": "^7.0.0-rc05",
     "embla-carousel-react": "^7.0.0-rc05",
+    "graphql": "^16.5.0",
     "minimist": "^1.2.5",
     "pullstate": "^1.24.0",
     "react": "^18.2.0",

@@ -8,27 +8,30 @@ import {
   InMemoryCache,
   ApolloProvider,
   gql,
+  createHttpLink,
 } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
-const client = new ApolloClient({
-  uri: "https://flyby-gateway.herokuapp.com/",
-  cache: new InMemoryCache(),
+const httpLink = createHttpLink({
+  uri:
+    "https://matxqqptazgqlonj5jvo4x6pze.appsync-api.us-east-1.amazonaws.com/graphql",
 });
 
-client
-  .query({
-    query: gql`
-      query GetLocations {
-        locations {
-          id
-          name
-          description
-          photo
-        }
-      }
-    `,
-  })
-  .then((result) => console.log(result));
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      "X-Api-Key": process.env.REACT_APP_EVENT_API_KEY,
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

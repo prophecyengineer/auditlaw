@@ -14,6 +14,8 @@ const TalkStore = new Store({
       image: "/avatars/Avatar-15.png",
       username: "lilly.h",
       bio: "I am a human on planet earth",
+      // content: "Man Glitch is a piece clsoe to my heart",
+      // avatar: "/avatars/Avatar-15.png",
     },
     {
       id: 2,

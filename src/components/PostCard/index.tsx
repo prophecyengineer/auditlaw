@@ -59,6 +59,10 @@ type Example = {
 };
 
 export const PostCard = (talk: Example) => {
+  const talkCategory = useStoreState(
+    CategoryStore,
+    getCategory(talk.category_id)
+  );
   const talks = useStoreState(TalkStore, getTalks);
 
   const [showModal, setShowModal] = useState(false);
@@ -116,9 +120,26 @@ export const PostCard = (talk: Example) => {
               transitionDuration={1000}
               transitionTimingFunction="linear"
             >
-              {talks.map((talk: any, talkIndex: Key | null | undefined) => {
-                return <NotificationCard key={talkIndex} talk={talk} />;
-              })}
+              <Grid>
+                <Grid.Col key={1}>
+                  <Link to="/alex">
+                    <UnstyledButton>
+                      <Group position="center">
+                        {/* <>
+                          <Avatar src={speaker.image} size={40}></Avatar>{" "}
+                          <Text size="xs" weight="bold">
+                            {speaker.username}
+                          </Text>
+                          <Text ml={-20} size="xs">
+                            {talkCategory.name}
+                          </Text>
+                        </> */}
+                      </Group>
+                    </UnstyledButton>
+                  </Link>
+                  <Space h="md" />
+                </Grid.Col>
+              </Grid>
             </Collapse>
           </Card>
         );

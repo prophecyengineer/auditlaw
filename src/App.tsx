@@ -19,8 +19,8 @@ function App() {
     <MantineProvider
       theme={{
         // Override any other properties from default theme
-        colorScheme: "dark",
-        primaryColor: "blue",
+        colorScheme: "light",
+        primaryColor: "teal",
         defaultRadius: 20,
         spacing: { xs: 15, sm: 20, md: 25, lg: 30, xl: 40 },
       }}

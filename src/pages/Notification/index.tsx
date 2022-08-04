@@ -18,7 +18,20 @@ const Home = () => {
       <Space h={30} />
 
       {talks.map((talk: any, talkIndex: Key | null | undefined) => {
-        return <NotificationCard key={talkIndex} talk={talk} />;
+        return (
+          <NotificationCard
+            key={talkIndex}
+            talk={talk}
+            speaker={[]}
+            category_id={""}
+            audience={""}
+            username={""}
+            title={""}
+            image={""}
+            name={""}
+            bio={""}
+          />
+        );
       })}
     </>
   );

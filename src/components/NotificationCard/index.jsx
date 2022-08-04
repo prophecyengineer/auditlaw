@@ -36,7 +36,25 @@ import {
 } from "tabler-icons-react";
 import styles from "./NotificationCard.module.css";
 
-export const NotificationCard = ({ talk }) => {
+type Example = {
+  talk: string,
+
+  speaker: {
+    username: string,
+    id: string,
+    image: string,
+  }[],
+  category_id: string,
+  // speakers: number;
+  audience: string,
+  username: string,
+  title: string,
+  image: string,
+  name: string,
+  bio: string,
+};
+
+export const NotificationCard = (talk: Example) => {
   const talkCategory = useStoreState(
     CategoryStore,
     getCategory(talk.category_id)
@@ -56,18 +74,19 @@ export const NotificationCard = ({ talk }) => {
 
   return (
     <>
-      <Grid>
+      hi
+      {/* <Grid>
         {speakers.map((speaker, index) => {
           // console.log(speaker);
           return (
             <>
-              <Grid.Col grow>
+              <Grid.Col>
                 <Link to={`/${speaker?.username}`}>
                   <UnstyledButton
                     key={`speaker_${index}`}
                     onClick={() => console.log("try focusing button with tab")}
                   >
-                    <Group position="center" grow>
+                    <Group position="center">
                       <>
                         <Avatar src={speaker.image} size={40}></Avatar>{" "}
                         <Text size="xs" weight="bold">
@@ -85,7 +104,7 @@ export const NotificationCard = ({ talk }) => {
             </>
           );
         })}
-      </Grid>
+      </Grid> */}
     </>
   );
 };
